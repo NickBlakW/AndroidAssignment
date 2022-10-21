@@ -1,5 +1,6 @@
 package com.example.androidassignment
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +19,13 @@ class MainActivity : AppCompatActivity() {
         manager = LinearLayoutManager(this)
         recycler.layoutManager = manager
 
-        adapter = RecyclerAdapter()
+        adapter = RecyclerAdapter(this)
         recycler.adapter = adapter
+
+        /*
+        // Go to details activity
+        val intent = Intent(this, DetailsActivity::class.java)
+
+        startActivity(intent)*/
     }
 }
