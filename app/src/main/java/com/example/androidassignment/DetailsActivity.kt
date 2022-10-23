@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 
 class DetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,14 +14,16 @@ class DetailsActivity : AppCompatActivity() {
         loadData()
     }
 
-    fun loadData() {
-        var titleView = findViewById<TextView>(R.id.m_title)
+    private fun loadData() {
+        val img = findViewById<ImageView>(R.id.m_img)
+        val ctxImg = intent.getStringExtra("image")
+        Glide.with(baseContext).load("https://image.tmdb.org/t/p/original" + ctxImg.toString())
+            .into(img)
+
+        val titleView = findViewById<TextView>(R.id.m_title)
         titleView.text = intent.getStringExtra("title")
 
-        var imgView = findViewById<ImageView>(R.id.m_img)
-        imgView.setImageResource(intent.getIntExtra("image", 0))
-
-        var details = findViewById<TextView>(R.id.m_details)
+        val details = findViewById<TextView>(R.id.m_details)
         details.text = intent.getStringExtra("details")
     }
 }
