@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         manager = LinearLayoutManager(this)
         recycler.layoutManager = manager
 
-        adapter = RecyclerAdapter(this)
+        adapter = RecyclerAdapter()
         recycler.adapter = adapter
 
         /*

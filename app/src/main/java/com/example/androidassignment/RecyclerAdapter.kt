@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 
-class RecyclerAdapter(var viewContext : Context) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapter() : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     val titles = arrayOf(
         "Django Unchained",
@@ -42,17 +42,19 @@ class RecyclerAdapter(var viewContext : Context) : RecyclerView.Adapter<Recycler
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         var iImg : ImageView
         var iTitle : TextView
-        var iDetails : TextView
+        //var iDetails : TextView
 
         init {
             iImg = itemView.findViewById(R.id.img)
             iTitle = itemView.findViewById(R.id.title)
-            iDetails = itemView.findViewById(R.id.details)
+            //iDetails = itemView.findViewById(R.id.details)
 
-            itemView.setOnClickListener { v : View ->
-                // var pos : Int = adapterPosition
-                viewContext.startActivity(Intent(viewContext, DetailsActivity::class.java))
-            }
+            /*itemView.setOnClickListener { v : View ->
+//                var pos : Int = adapterPosition
+                var ctx = v.context
+
+                ctx.startActivity(Intent(ctx, DetailsActivity::class.java))
+            }*/
         }
     }
 
@@ -65,7 +67,13 @@ class RecyclerAdapter(var viewContext : Context) : RecyclerView.Adapter<Recycler
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.iImg.setImageResource(imgIds[position])
         holder.iTitle.text = titles[position]
-        holder.iDetails.text = details[position]
+        //holder.iDetails.text = details[position]
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, DetailsActivity::class.java)
+            intent.putExtra("title", holder.iTitle.text)
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
