@@ -67,11 +67,16 @@ class RecyclerAdapter() : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.iImg.setImageResource(imgIds[position])
         holder.iTitle.text = titles[position]
-        //holder.iDetails.text = details[position]
+
+        // Extras for export
+        val img = imgIds[position]
+        val description = details[position]
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, DetailsActivity::class.java)
             intent.putExtra("title", holder.iTitle.text)
+            intent.putExtra("image", img)
+            intent.putExtra("details", description)
             holder.itemView.context.startActivity(intent)
         }
     }
