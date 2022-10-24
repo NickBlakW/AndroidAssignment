@@ -34,13 +34,6 @@ class RecyclerAdapter(var m_list : List<Movie>, var context : Context) : Recycle
         Glide.with(context).load("https://image.tmdb.org/t/p/original" + m_list[position].poster_path)
             .into(holder.iImg)
 
-        /*holder.iImg.setImageResource(imgIds[position])
-        holder.iTitle.text = titles[position]
-
-        // Extras for export
-        val img = imgIds[position]
-        val description = details[position]*/
-
         holder.itemView.setOnClickListener {
             val intent = Intent(context, DetailsActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
